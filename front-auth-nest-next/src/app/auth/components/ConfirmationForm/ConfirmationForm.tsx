@@ -1,0 +1,52 @@
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Loader2Icon } from "lucide-react"
+
+import { useConfirmationForm } from "./hooks/useConfirmationForm"
+
+const ConfirmationForm = () => {
+  const { form, functions, state } = useConfirmationForm()
+
+  return (
+    <div className="xs:w-[230px] mx-auto flex flex-col justify-center space-y-6 rounded-xl px-5 sm:w-[280px] lg:w-[300px] xl:w-[350px] 2xl:w-[400px]">
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">Two factor authentication</h1>
+        <p className="text-sm text-muted-foreground">We sent you a code to your</p>
+      </div>
+      <form onSubmit={functions.onSubmit} className="flex flex-col space-y-3">
+        <Input
+          placeholder="your code"
+          {...form.register("code")}
+          error={form.formState.errors.code?.message}
+        />
+        <div className="flex flex-col gap-2">
+          <Button type="submit" className="w-full">
+            {state.loading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
+            Confirm
+          </Button>
+          {!!state.seconds && (
+            <div>
+              <p className="text-center text-sm text-muted-foreground">
+                try again after {state.seconds} seconds
+              </p>
+            </div>
+          )}
+          {!state.seconds && (
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={functions.onConfirmation}
+              disabled={state.loading}
+            >
+              {state.loading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
+              Send code
+            </Button>
+          )}
+        </div>
+      </form>
+    </div>
+  )
+}
+
+export { ConfirmationForm }

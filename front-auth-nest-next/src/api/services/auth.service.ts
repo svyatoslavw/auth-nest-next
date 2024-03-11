@@ -1,0 +1,53 @@
+import { axiosClassic } from "@/api/api.interceptor"
+
+import { removeCookiesFromStorage, saveTokenStorage } from "./auth-token.service"
+
+export const authService = {
+  async login(data: IAuthEmailLoginForm) {
+    const response = await axiosClassic.post<IAuthTokenResponse>("/auth/login", data)
+
+    if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+
+    return response
+  },
+
+  async emailConfirmation(data: IAuthEmailConfirmationForm) {
+    const response = await axiosClassic.post<TAuthResponse>("/auth/confirmation-email", data)
+
+    if ("accessToken" in response.data) {
+      saveTokenStorage(response.data.accessToken)
+    }
+
+    return response
+  },
+
+  async phoneConfirmation(data: IAuthPhoneConfirmationForm) {
+    const response = await axiosClassic.post<IAuthMessageResponse>("/auth/confirmation-phone", data)
+
+    return response
+  },
+
+  async register(data: IAuthRegisterForm) {
+    const response = await axiosClassic.post<IAuthTokenResponse>("/auth/register", data)
+
+    if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+
+    return response
+  },
+
+  async getNewTokens() {
+    const response = await axiosClassic.post<IAuthTokenResponse>("/auth/login/access-token")
+
+    if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+
+    return response
+  },
+
+  async logout() {
+    const response = await axiosClassic.post<boolean>("/auth/logout")
+
+    if (response.data) removeCookiesFromStorage()
+
+    return response
+  }
+}
