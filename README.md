@@ -127,11 +127,11 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```
-git clone https://github.com/svyatoslavw/AUTH-NEST-NEXT.git
+git clone https://github.com/svyatoslavw/auth-nest-next.git
 ```
 
 ```
-cd AUTH-NEST-NEXT
+cd auth-nest-next
 ```
 
 <!-- Run Locally -->
@@ -152,7 +152,7 @@ Start the server
 First, run the development server:
 
 ```bash
-  cd BACK-AUTH-NEST-NEXT
+  cd back-auth-nest-next
 ```
 
 ```bash
@@ -164,7 +164,7 @@ First, run the development server:
 After,start client server:
 
 ```bash
-  cd FRONT-AUTH-NEST-NEXT
+  cd front-auth-nest-next
 ```
 
 ```bash
