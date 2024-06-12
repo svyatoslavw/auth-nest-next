@@ -112,3 +112,7 @@
   left: 10%;
   transition: all 0.4s ease;
 }
+
+.container {
+  min-height: calc(100vh - 80px);
+}

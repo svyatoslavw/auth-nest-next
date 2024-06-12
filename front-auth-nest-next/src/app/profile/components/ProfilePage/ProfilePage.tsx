@@ -8,7 +8,7 @@ const ProfilePage = () => {
   if (!profile) return
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex container flex-col items-center justify-between p-24">
       <div className="mb-32 grid gap-2 text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-3 lg:text-left">
         <ProfileItem name="email" value={profile.email} />
         <ProfileItem name="login" value={profile.login} />

@@ -20,5 +20,6 @@ const AuthButton = React.forwardRef<HTMLAnchorElement, AuthButtonProps>(
     )
   }
 )
+AuthButton.displayName = "AuthButton"
 
 export { AuthButton }

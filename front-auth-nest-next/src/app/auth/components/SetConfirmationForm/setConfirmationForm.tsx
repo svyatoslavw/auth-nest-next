@@ -31,11 +31,11 @@ const SetConfirmationForm = () => {
             onValueChange={(value: "phone" | "email") => functions.setCredential(value)}
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="email" id="email" />
+              <RadioGroupItem className="size-5 border-2" value="email" id="email" />
               <Label htmlFor="email">email</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="phone" id="phone" />
+              <RadioGroupItem className="size-5 border-2" value="phone" id="phone" />
               <Label htmlFor="phone">phone</Label>
             </div>
           </RadioGroup>

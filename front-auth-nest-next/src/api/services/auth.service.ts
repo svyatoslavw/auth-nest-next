@@ -22,9 +22,7 @@ export const authService = {
   },
 
   async phoneConfirmation(data: IAuthPhoneConfirmationForm) {
-    const response = await axiosClassic.post<IAuthMessageResponse>("/auth/confirmation-phone", data)
-
-    return response
+    return axiosClassic.post<IAuthMessageResponse>("/auth/confirmation-phone", data)
   },
 
   async register(data: IAuthRegisterForm) {

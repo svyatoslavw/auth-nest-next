@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Loader2Icon } from "lucide-react"
+import {
+  InputOTP,
+  InputOTPGroup, InputOTPSeparator,
+  InputOTPSlot
+} from "@/components/ui/input-otp"
 
 import { useConfirmationForm } from "./hooks/useConfirmationForm"
+import { Controller } from "react-hook-form"
 
 const ConfirmationForm = () => {
   const { form, functions, state } = useConfirmationForm()
@@ -14,11 +20,28 @@ const ConfirmationForm = () => {
         <p className="text-sm text-muted-foreground">We sent you a code to your</p>
       </div>
       <form onSubmit={functions.onSubmit} className="flex flex-col space-y-3">
-        <Input
-          placeholder="your code"
-          {...form.register("code")}
-          error={form.formState.errors.code?.message}
+        <div className="mx-auto">
+        <Controller
+          control={form.control}
+          name="code"
+          render={({field}) => (
+            <InputOTP maxLength={6} {...field} >
+              <InputOTPGroup >
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup >
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          )}
+
         />
+        </div>
         <div className="flex flex-col gap-2">
           <Button type="submit" className="w-full">
             {state.loading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}

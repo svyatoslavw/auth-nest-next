@@ -14,6 +14,7 @@ const client = new QueryClient({
   queryCache: new QueryCache({
     onError: (cause) => {
       const { response } = cause as AxiosError<BaseResponse>
+      console.log(response)
       toast.error(response?.data.message ?? DEFAULT_ERROR, {
         cancel: { label: "Close" }
       })
@@ -22,6 +23,7 @@ const client = new QueryClient({
   mutationCache: new MutationCache({
     onError: (cause) => {
       const { response } = cause as AxiosError<BaseResponse>
+      console.log(response)
       toast.error(response?.data.message ?? DEFAULT_ERROR, {
         cancel: { label: "Close" }
       })

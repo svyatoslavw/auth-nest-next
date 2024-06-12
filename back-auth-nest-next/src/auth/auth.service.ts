@@ -43,7 +43,7 @@ export class AuthService {
         await this.confirmationService.saveCode(user.id, code, expiration)
 
         await this.mailerService.sendMail({
-          to: "sadness0v1@gmail.com",
+          to: user.email,
           from: "auth.nest.next@gmail.com",
           subject: "Login Confirmation",
           html: getEmailHtml(code)
@@ -170,8 +170,8 @@ export class AuthService {
 
   private isTwoFactorRequired(dto: ConfirmationDto) {
     if (dto.password) {
-      return true
-      //return Math.random() <= 0.5 // 50 % na to, chto proizoidet 2-factorka
+      //return true
+      return Math.random() <= 0.5 // 50 % na to, chto proizoidet 2-factorka
     } else {
       return true
     }

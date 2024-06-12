@@ -32,7 +32,7 @@ export const useLoginForm = () => {
 
   const { mutate, isPending } = useEmailConfirmationMutation({
     onSuccess({ data }) {
-      if ("accessToken" in data) {
+      if (data && "accessToken" in data) {
         removeValuesFromLS("values")
         push("/")
         toast.success("Successfully login!", { cancel: { label: "Close" } })
@@ -54,9 +54,9 @@ export const useLoginForm = () => {
   }, [login])
 
   const onSubmit = loginForm.handleSubmit((values: IAuthEmailConfirmationForm) => {
-    console.log("@", values)
-    setValuesToLS("values", values.credential)
-    mutate(values)
+      console.log("@", values)
+      setValuesToLS("values", values.credential)
+      mutate(values)
   })
 
   const onSignup = () => setStage("register")

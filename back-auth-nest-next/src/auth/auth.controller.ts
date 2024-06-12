@@ -47,7 +47,7 @@ export class AuthController {
   async confirmation(@Body() dto: ConfirmationDto, @Res({ passthrough: true }) res: Response) {
     const result = await this.authService.loginOrEmailConfirmation(dto)
 
-    if ("refreshToken" in result) {
+    if (result && "refreshToken" in result) {
       const { refreshToken, ...response } = result
       this.authService.addRefreshToken(res, refreshToken)
 
